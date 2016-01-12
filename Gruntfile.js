@@ -87,9 +87,9 @@ module.exports = function (grunt) {
       livereload: {
         proxies: [
           {
-            context: ['/api'],
+            context: ['/eventbus'],
             host: '127.0.0.1',
-            port: 8080
+            port: 8081
           }
         ],
         options: {
