@@ -32,13 +32,7 @@
 <![endif]-->
 
 
-<div ng-controller="wsmain as ws">
-    <md-input-container>
-        <input ng-model="ws.m" ng-enter="ws.send()">
-
-    </md-input-container>
-
-
+<div ui-view>
 </div>
 
 
@@ -69,9 +63,10 @@
 <!-- build:js({.tmp,app}) /scripts/scripts.js -->
 <!-- include: "type": "js", "files": "**/*.js" -->
 <script src="/app.js"></script>
+<script src="/app.route.js"></script>
 <script src="/app.socket.js"></script>
 <script src="/app.util.js"></script>
-<script src="/app.wsmain.js"></script>
+<script src="/game.page/game.controller.js"></script>
 <!-- /include -->
 <!-- endbuild -->
 <!-- build:js({.tmp,app}) /scripts/template.js -->
