@@ -40,3 +40,9 @@ gradle-app.setting
 
 # Cache of project
 .gradletasknamecache
+
+### Bower ###
+bower_components
+.bower-cache
+.bower-registry
+.bower-tmp
