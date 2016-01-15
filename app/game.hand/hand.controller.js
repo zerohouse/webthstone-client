@@ -1,11 +1,5 @@
 /* @ngInject */
 ws.controller('handDirectiveController', function (GameCard, $element, $window, JSocket, $scope) {
-    this.cards = [new GameCard(), new GameCard(), new GameCard(), new GameCard(), new GameCard(), new GameCard()];
-
-    JSocket.on('card.update', function(hand){
-       console.log(hand);
-    });
-
     var width = $element.width();
     angular.element($window).bind('resize', function () {
         if ($element === null)
