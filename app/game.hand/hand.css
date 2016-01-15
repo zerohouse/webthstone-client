@@ -1,0 +1,18 @@
+hand {
+  max-width: 600px;
+  margin: auto;
+  height: 300px;
+  display: block;
+  position: relative;
+}
+hand game-card {
+  position: absolute;
+  opacity: 0.8;
+  transition: 0.2s;
+}
+hand game-card:hover {
+  opacity: 1;
+  margin-top: -20px !important;
+  transform: scale(1.5) !important;
+  z-index: 1 !important;
+}

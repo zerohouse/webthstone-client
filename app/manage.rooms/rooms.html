@@ -1,0 +1,11 @@
+<md-list>
+    <md-list-item ng-repeat="room in ctrl.rooms">
+        {{room.name}}
+    </md-list-item>
+
+
+</md-list>
+<input ng-model="name">
+
+<div ng-click="ctrl.makeRoom(name)">방만들기</div>
+<div ng-click="ctrl.roomUpdate()">새로고침 </div>

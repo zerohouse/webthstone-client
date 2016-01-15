@@ -17,7 +17,12 @@
 
     <!-- build:css({.tmp,app}) /styles/main.css -->
     <!-- include: "type": "css", "files": "**/*.css" -->
-    
+    <link href="/game.card/card.css" rel="stylesheet" type="text/css">
+    <link href="/game.field/field.css" rel="stylesheet" type="text/css">
+    <link href="/game.fighter/fighter.css" rel="stylesheet" type="text/css">
+    <link href="/game.hand/hand.css" rel="stylesheet" type="text/css">
+    <link href="/index.css" rel="stylesheet" type="text/css">
+    <link href="/manage.rooms/rooms.css" rel="stylesheet" type="text/css">
     <!-- /include -->
     <!-- endbuild -->
 
@@ -53,9 +58,8 @@
 <script src="/bower_components/moment/moment.js"></script>
 <script src="/bower_components/angular-aria/angular-aria.js"></script>
 <script src="/bower_components/angular-material/angular-material.js"></script>
-<script src="/bower_components/angular-websocket/angular-websocket.min.js"></script>
 <script src="/bower_components/sockjs-client/dist/sockjs.js"></script>
-<script src="/bower_components/vertx3-eventbus-client/vertx-eventbus.js"></script>
+<script src="/bower_components/stomp-websocket/lib/stomp.min.js"></script>
 <!-- endbower -->
 <!-- endbuild -->
 
@@ -64,9 +68,18 @@
 <!-- include: "type": "js", "files": "**/*.js" -->
 <script src="/app.js"></script>
 <script src="/app.route.js"></script>
-<script src="/app.socket.js"></script>
 <script src="/app.util.js"></script>
+<script src="/game.card/card.controller.js"></script>
+<script src="/game.card/card.directive.js"></script>
+<script src="/game.card/card.model.js"></script>
+<script src="/game.hand/hand.controller.js"></script>
+<script src="/game.hand/hand.directive.js"></script>
+<script src="/game.hand/hand.model.js"></script>
 <script src="/game.page/game.controller.js"></script>
+<script src="/manage.rooms/rooms.controller.js"></script>
+<script src="/manage.rooms/rooms.directive.js"></script>
+<script src="/manage.rooms/rooms.model.js"></script>
+<script src="/websocket.service/websocket.js"></script>
 <!-- /include -->
 <!-- endbuild -->
 <!-- build:js({.tmp,app}) /scripts/template.js -->

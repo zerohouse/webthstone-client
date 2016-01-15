@@ -1,17 +1,17 @@
-angular.module('ws').controller('gameController', function () {
-
-    this.sendMessage = sendMessage;
-    var eventBus = this.eventBus = new EventBus("/eventbus");
-    eventBus.onopen = function () {
-        eventBus.registerHandler("chat.to.client", function (err, msg) {
-            console.log(msg.body);
-        });
-    };
-
-
-    function sendMessage() {
-        eventBus.publish("chat.to.server", "abc");
-    }
-
+ws.controller('gameController', function () {
+    //var stompClient = null;
+    //var socket = new SockJS('http://localhost:8080/socket');
+    //
+    //stompClient = Stomp.over(socket);
+    //stompClient.connect({}, function (frame) {
+    //    console.log('Connected: ' + frame);
+    //    stompClient.subscribe('/game/update', function (game) {
+    //        console.log(game);
+    //    });
+    //});
+    //
+    //this.sendMessage = function () {
+    //    stompClient.send("/socket/game/update", {}, JSON.stringify({a:1}));
+    //};
 
 });

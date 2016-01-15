@@ -1,0 +1,78 @@
+game-card {
+  display: inline-block;
+  width: 130px;
+  height: 204px;
+  position: relative;
+  margin: 15px;
+  font-size: 80%;
+}
+game-card .body {
+  width: 90%;
+  height: 92%;
+  margin: 5%;
+  border: 1px solid #ccc;
+  border-radius: 13px;
+  background: white;
+}
+game-card .body .img {
+  overflow: hidden;
+  width: 80px;
+  max-height: 80px;
+  height: auto;
+  border-top-left-radius: 80%;
+  border-top-right-radius: 80%;
+  border-bottom-right-radius: 60%;
+  border-bottom-left-radius: 60%;
+  margin: 10px auto 5px;
+  display: block;
+  border: 1px solid #eee;
+}
+game-card .body .img img {
+  width: 100%;
+  height: 100%;
+}
+game-card .body .title {
+  text-align: center;
+  background: #eee;
+  padding: 3px;
+  height: 20px;
+  margin-top: 7px;
+}
+game-card .body .desc {
+  padding: 8px 17px;
+  text-align: justify;
+  height: 40px;
+  overflow: hidden;
+  font-size: 92%;
+}
+game-card .cost {
+  left: 0;
+  top: 0;
+  background: #6679FF;
+}
+game-card .attack {
+  left: 0;
+  bottom: 0;
+}
+game-card .vital {
+  bottom: 0;
+  right: 0;
+}
+game-card span {
+  height: 30px;
+  width: 30px;
+  border: 1px solid;
+  border-radius: 50%;
+  display: block;
+  text-align: center;
+  line-height: 30px;
+  font-size: 20px;
+  color: white;
+  position: absolute;
+}
+.attack {
+  background: #D25353;
+}
+.vital {
+  background: #59BF90;
+}

@@ -1,0 +1,26 @@
+{
+  "bitwise": true,
+  "browser": true,
+  "curly": false,
+  "eqeqeq": true,
+  "esnext": true,
+  "latedef": false,
+  "jasmine": true,
+  "noarg": true,
+  "node": true,
+  "strict": false,
+  "undef": true,
+  "unused": true,
+  "globals": {
+    "angular": false,
+    "inject": false,
+    "$": true,
+    "moment": true,
+    "bowser": true,
+    "_": true,
+    "SockJS": true,
+    "Stomp": true,
+    "ws": true
+  },
+  "validthis": true
+}

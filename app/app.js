@@ -1,4 +1,4 @@
-angular.module('ws', [
+var ws = angular.module('ws', [
     'ngAnimate',
     'ngCookies',
     'ngMaterial',
@@ -9,12 +9,11 @@ angular.module('ws', [
     'ui.router',
     'ngFileUpload',
     'toastr',
-    'ngWebSocket',
     'anim-in-out'
     /* @ngInject */
-]).run(function ($rootScope, $state, $window, $location) {
-    /* @ngInject */
-}).config(function ($locationProvider, toastrConfig, $httpProvider, $mdThemingProvider) { //RestangularProvider,
+]);
+
+ws.config(function ($locationProvider, toastrConfig, $httpProvider, $mdThemingProvider) { //RestangularProvider,
     $locationProvider.html5Mode({
         enabled: true,
         requireBase: false

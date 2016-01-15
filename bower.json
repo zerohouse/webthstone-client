@@ -13,16 +13,14 @@
     "ng-file-upload": "~9.1.1",
     "angular-toastr": "~1.5.0",
     "angular-ui-router-anim-in-out": "~1.0.2",
-    "angular-messages": "~1.4.7",
     "moment": "~2.10.6",
     "angular-material": "~0.11.4",
-    "angular-websocket": "~1.0.14",
     "sockjs-client": "~1.0.3",
-    "vertx3-eventbus-client": "~3.2.0"
+    "stomp-websocket": "~2.3.4"
   },
   "devDependencies": {
     "angular-mocks": "^1.3.0"
   },
   "appPath": "app",
-  "moduleName": "clientApp"
+  "moduleName": "ws"
 }
