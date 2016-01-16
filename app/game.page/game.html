@@ -2,8 +2,10 @@
     <md-button ng-click="game.playGame()">
         게임 참여
     </md-button>
+    <div layout="row" layout-align="center center">
+        <div> 남은시간 : {{game.remainSeconds}}</div>
+    </div>
 </div>
-
-
 <enemy></enemy>
 <player></player>
+<logger></logger>

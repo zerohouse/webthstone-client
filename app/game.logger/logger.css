@@ -1,0 +1,27 @@
+logger {
+  color: white;
+  display: block;
+  position: absolute;
+  top: 0;
+  width: 300px;
+  right: 0;
+}
+logger md-list-item {
+  opacity: 0.8;
+  transition: 0.2s;
+}
+logger md-list-item:hover {
+  opacity: 1;
+}
+logger .success {
+  background-color: #51a351;
+}
+logger .info {
+  background-color: #2f96b4;
+}
+logger .warning {
+  background-color: #f89406;
+}
+logger .error {
+  background-color: #bd362f;
+}

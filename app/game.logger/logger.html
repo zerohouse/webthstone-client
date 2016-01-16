@@ -1,0 +1,8 @@
+<md-subheader>로그</md-subheader>
+<md-list>
+    <md-list-item ng-repeat="log in ctrl.logs" ng-class="log.type">
+            {{log.msg}}
+    </md-list-item>
+</md-list>
+
+{{ctrl.logs}}
