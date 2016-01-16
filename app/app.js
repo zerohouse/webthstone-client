@@ -2,7 +2,6 @@ var ws = angular.module('ws', [
     'ngAnimate',
     'ngCookies',
     'ngMaterial',
-    'ngMessages',
     'ngResource',
     'ngSanitize',
     'ngTouch',
