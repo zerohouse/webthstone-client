@@ -6,12 +6,23 @@ ws.service('JSocket', function () {
         console.log("socket established ", frame);
     };
 
+    var eventQue = [];
+
     sock.onmessage = function (response) {
+        eventQue.unshift(response);
+        queing();
+    };
+
+    function queing() {
+        var response = eventQue.pop();
         var jeo = JSON.parse(response.data);
         if (typeof events[jeo.type] !== "function")
             return;
         events[jeo.type](jeo.result);
-    };
+        if (eventQue.length === 0)
+            return;
+        queing();
+    }
 
     this.on = function (event, fn) {
         events[event] = fn;
@@ -23,7 +34,7 @@ ws.service('JSocket', function () {
         sock.send(JSON.stringify(jeo));
     };
 
-    function Jeo(type, params){
+    function Jeo(type, params) {
         this.type = type;
         this.params = params;
     }

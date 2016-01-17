@@ -12,6 +12,22 @@ ws.controller('gameController', function (JSocket, Alert, $interval) {
         Alert.info(message);
     });
 
+    JSocket.on("game.use_card", function (cardname) {
+        Alert.raw('success', "카드사용", cardname + "카드를 사용했습니다.");
+    });
+
+    JSocket.on("game.attack", function (cardname) {
+        Alert.raw('error', "공격!", cardname);
+    });
+
+    JSocket.on("game.enemy_use_card", function (cardname) {
+        Alert.raw('error', "카드사용", "상대가 " + cardname + "카드를 사용했습니다.");
+    });
+
+    JSocket.on("game.warn", function (message) {
+        Alert.warning(message);
+    });
+
     JSocket.on("game.start_turn", function () {
         Alert.info("내 차례입니다.");
         self.turn = true;

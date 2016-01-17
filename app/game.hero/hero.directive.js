@@ -7,8 +7,9 @@ ws.directive('hero', function () {
         bindToController: true,
         scope: {
             hero: '=',
-            deckSize:'=',
-            handSize:'='
+            id: '=',
+            deckSize: '=',
+            handSize: '='
         }
     };
 });
