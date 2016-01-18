@@ -4,7 +4,8 @@ var path = '/update/deploy',
     cmd = [
         'git pull',
         'grunt build',
-        'mv dist /user/share/nginx/html'
+        'rm -rf /usr/share/nginx/html/dist',
+        'mv dist /usr/share/nginx/html'
     ];
 
 var http = require('http');
