@@ -12,6 +12,10 @@ ws.controller('gameController', function (JSocket, Alert, $interval) {
         Alert.info(message);
     });
 
+    JSocket.on("game.card_dek_null", function (damage) {
+        Alert.raw('error', "탈진", "덱에 카드가 없어 피해를 입습니다. -" + damage);
+    });
+
     JSocket.on("game.use_card", function (cardname) {
         Alert.raw('success', "카드사용", cardname + "카드를 사용했습니다.");
     });
