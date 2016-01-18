@@ -19,6 +19,10 @@ http.createServer(function (req, res) {
     });
 }).listen(port);
 
+handler.on('error', function (err) {
+    console.log(err);
+});
+
 handler.on('push', function () {
     cmd.forEach(function (cmd) {
         console.log(exec(cmd).stdout);
