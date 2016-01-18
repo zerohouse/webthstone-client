@@ -1,6 +1,6 @@
 ws.service('JSocket', function () {
     var events = {};
-    var sock = new SockJS('http://localhost:9000/socket');
+    var sock = new SockJS('/socket');
 
     sock.onconnect = function (frame) {
         console.log("socket established ", frame);
