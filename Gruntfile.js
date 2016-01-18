@@ -221,7 +221,6 @@ module.exports = function (grunt) {
                     '/bower_components/angular-resource/angular-resource.js',
                     '/bower_components/angular-sanitize/angular-sanitize.js',
                     '/bower_components/angular-touch/angular-touch.js',
-                    '/bower_components/angular-messages/angular-messages.js'
                 ]
             },
             test: {
@@ -387,7 +386,7 @@ module.exports = function (grunt) {
             dist: {
                 options: {
                     prefix: '/',
-                    module: 'clientApp',
+                    module: 'ws',
                     //htmlmin: '<%= htmlmin.dist.options %>'
                     //usemin: 'scripts/scripts.js'
                 },
