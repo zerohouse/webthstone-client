@@ -41,6 +41,8 @@
     "test": "grunt test"
   },
   "dependencies": {
+    "github-webhook-handler": "^0.5.0",
+    "sync-exec": "^0.6.1",
     "angular": "^1.4.7",
     "bootstrap": "^3.3.5",
     "jasmine": "^2.3.2",
