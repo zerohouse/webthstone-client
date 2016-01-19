@@ -1,0 +1,41 @@
+<div ng-controller="deckController as deck">
+    <md-subheader>덱만들기</md-subheader>
+    <md-button ng-click="deck.getList()">리스트</md-button>
+
+    <md-input-container>
+        <label>검색어</label>
+        <input ng-model="keyword">
+    </md-input-container>
+    <md-list>
+        <md-list-item></md-list-item>
+    </md-list>
+</div>
+
+<div ng-controller="cardMakeController as ctrl">
+    <div layout="row">
+        <md-input-container>
+            <label>카드명</label>
+            <input ng-model="ctrl.card.name">
+        </md-input-container>
+
+        <md-input-container>
+            <label>코스트</label>
+            <input ng-model="ctrl.card.cost">
+        </md-input-container>
+        <md-input-container>
+            <label>공격력</label>
+            <input ng-model="ctrl.card.attack">
+        </md-input-container>
+        <md-input-container>
+            <label>체력</label>
+            <input ng-model="ctrl.card.vital">
+        </md-input-container>
+        <md-input-container>
+            <label>이미지</label>
+            <input ng-model="ctrl.card.img">
+        </md-input-container>
+        <md-button ng-click="ctrl.saveCard()">카드 저장</md-button>
+    </div>
+
+
+</div>

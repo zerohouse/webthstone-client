@@ -1,8 +1,8 @@
-ws.directive('logger', function () {
+ws.directive('player', function () {
     return {
         restrict: 'E',
-        controller: 'loggerDirectiveController',
-        templateUrl: '/game.logger/logger.html',
+        controller: 'playerDirectiveController',
+        templateUrl: '/game/player/player.html',
         controllerAs: 'ctrl',
         bindToController: true,
         scope: {
