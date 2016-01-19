@@ -1,13 +1,18 @@
-ws.controller('deckController', function (JSocket, Alert, $interval) {
-
-    this.getList = function () {
-        JSocket.send("card.list");
-
+ws.controller('deckController', function (http) {
+    var self = this;
+    this.saveCard = function (card) {
+        http.post('/api/card', card).then(function (res) {
+            card.id = res;
+        });
+        self.cards.push(card);
     };
 
-    JSocket.on("card.list", function (list) {
-        console.log(list);
-    });
+    this.getList = function () {
+        http.get('/api/card').then(function (cards) {
+            self.cards = cards;
+        });
+    };
 
+    this.getList();
 
 });
