@@ -1,18 +1,22 @@
 <span class="cost">{{card.cost}}</span>
-<span class="attack">{{card.attack}}</span>
-<span class="vital">{{card.vital}}</span>
+<span ng-if="card.isFighter" class="attack">{{card.fighter.attack}}</span>
+<span ng-if="card.isFighter" class="vital">{{card.fighter.vital}}</span>
 
 <div class="body">
 
     <div class="img">
-        <img ng-src="{{card.img}}">
+        <img ng-src="{{card.img||'/resources/card/white.png'}}">
     </div>
     <div class="title">
         {{card.title}}
     </div>
     <div class="desc">
         {{card.desc}}
-        <div ng-click="submit()">제출</div>
+
+    </div>
+    <div ng-if="card.isFighter">
+        <stong ng-repeat="effect in card.fighter.effects">{{getString(effect)}}</stong>
     </div>
 
 </div>
+<div ng-click="submit()">제출</div>
