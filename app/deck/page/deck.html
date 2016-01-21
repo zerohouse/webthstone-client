@@ -72,6 +72,18 @@
                     </md-menu-item>
                 </md-menu-content>
             </md-menu>
+            <md-menu ng-if="ctrl.effect.effects[effect.effect].rangeSelect">
+                <md-button aria-label="when effect trigger" class="md-icon-button" ng-click="$mdOpenMenu($event)">
+                    {{ctrl.effect.rangeNames[effect.range]||"범위"}}
+                </md-button>
+                <md-menu-content>
+                    <md-menu-item ng-click="effect.range = key" ng-repeat="range in ctrl.effect.effects[effect.effect].range">
+                        <md-button>
+                            {{ctrl.effect.rangeNames[range]}}
+                        </md-button>
+                    </md-menu-item>
+                </md-menu-content>
+            </md-menu>
             <md-input-container ng-repeat="param in ctrl.effect.effects[effect.effect].params">
                 <label>{{param}}</label>
                 <input type="number" ng-model="effect.params[$index]">
