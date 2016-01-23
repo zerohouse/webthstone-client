@@ -28,7 +28,7 @@ angular.module('ws').config(function ($stateProvider, $urlRouterProvider) {
         })
         .state("card.deck", {
             name: "deck",
-            url: "/deck",
+            url: "/deck/:id",
             templateUrl: "/card/page/deck.html"
         });
     $urlRouterProvider.otherwise("/");

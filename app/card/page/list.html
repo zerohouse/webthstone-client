@@ -1,7 +1,7 @@
 <div ng-controller="cardListController as list">
     <md-input-container>
         <label>검색어</label>
-        <input ng-model="keyword" ng-model-options="{debounce:300}">
+        <input ng-model="list.keyword" ng-model-options="{debounce:300}">
     </md-input-container>
     <md-list>
         <md-list-item ng-repeat="card in list.cards">
@@ -9,8 +9,26 @@
             <div flex>{{card.name}}</div>
             <div ng-if="card.fighterCard">하수인 {{card.fighter.attack}} / {{card.fighter.vital}}</div>
             <div ng-if="!card.fighterCard">주문 {{list.effect.effects[card.action].name}}</div>
+            <div>
+                <md-menu>
+                    <md-button aria-label="when effect trigger" ng-click="$mdOpenMenu($event)">
+                        내 덱에 담기
+                    </md-button>
+                    <md-menu-content>
+                        <md-menu-item ng-click="list.addToDeck(deck, card)"
+                                      ng-repeat="deck in list.user.deckList |filter:list.keyword">
+                            <md-button>
+                                {{deck.name}}
+                            </md-button>
+                        </md-menu-item>
+                        <md-menu-item ng-hide="list.user.deckList && list.user.deckList.length>0">
+                            <md-button>덱이 없어요.</md-button>
+                        </md-menu-item>
+                    </md-menu-content>
+                </md-menu>
+            </div>
         </md-list-item>
         <md-list-item ng-show="list.cards.length===0">카드가 없네요!</md-list-item>
     </md-list>
-    <md-button ng-show="list.more" ng-click="list.getList()">더보기</md-button>
+    <md-button ng-show="list.more" ng-click="list.getDeck()">더보기</md-button>
 </div>

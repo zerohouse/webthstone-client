@@ -17,8 +17,13 @@ ws.run(function ($rootScope, $window, fb) {
 });
 
 /* @ngInject */
-ws.service('fb', function fb($rootScope, JSocket) {
+ws.service('fb', function fb($rootScope, JSocket, http, Alert) {
     var self = this;
+
+    JSocket.on('user.update', function (user) {
+        self.user = user;
+    });
+
     this.getUserInfo = function () {
         FB.api('/me', function (res) {
             self.user = res;
@@ -32,6 +37,20 @@ ws.service('fb', function fb($rootScope, JSocket) {
             });
         });
     };
+
+    this.newDeck = function () {
+        if (!self.user) {
+            Alert.warning("로그인을 해주세요.");
+            return;
+        }
+        http.post('/api/deck', {fbId: self.user.id}).then(function (deck) {
+            if (!self.user.deckList)
+                self.user.deckList = [];
+            self.user.deckList.push(deck);
+        });
+    };
+
+
     this.logout = function () {
         FB.logout(function () {
             self.user = {};

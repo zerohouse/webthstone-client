@@ -1,3 +1,3 @@
-ws.controller('cardController', function (http, effect, $scope) {
-    this.decks = [1,2,3];
+ws.controller('cardController', function (fb) {
+    this.fb = fb;
 });

@@ -3,16 +3,16 @@
     <md-button ui-sref="card.make">카드만들기</md-button>
     <md-menu>
         <md-button aria-label="when effect trigger" ng-click="$mdOpenMenu($event)">
-            {{card.selected||"덱"}}
+            {{card.selected.name||"덱"}}
         </md-button>
         <md-menu-content>
-            <md-menu-item  ui-sref="card.deck({id:deck})" ng-click="card.selected = deck;" ng-repeat="deck in card.decks">
+            <md-menu-item  ui-sref="card.deck({id:deck.id})" ng-click="card.selected = deck;" ng-repeat="deck in card.fb.user.deckList">
                 <md-button>
-                    {{deck}}
+                    {{deck.name}}
                 </md-button>
             </md-menu-item>
             <md-menu-item>
-                <md-button>
+                <md-button ng-click="card.fb.newDeck();">
                     덱 추가하기 +
                 </md-button>
             </md-menu-item>
