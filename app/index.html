@@ -17,6 +17,7 @@
 
     <!-- build:css({.tmp,app}) /styles/main.css -->
     <!-- include: "type": "css", "files": "**/*.css" -->
+    <link href="/card/page/list.css" rel="stylesheet" type="text/css">
     <link href="/game/card/card.css" rel="stylesheet" type="text/css">
     <link href="/game/enemy.player/enemy.css" rel="stylesheet" type="text/css">
     <link href="/game/fighter/field.css" rel="stylesheet" type="text/css">
@@ -29,6 +30,7 @@
     <link href="/index.css" rel="stylesheet" type="text/css">
     <link href="/manage.room/room.css" rel="stylesheet" type="text/css">
     <link href="/manage.rooms/rooms.css" rel="stylesheet" type="text/css">
+    <link href="/user/user.directive/user.css" rel="stylesheet" type="text/css">
     <!-- /include -->
     <!-- endbuild -->
 
@@ -36,16 +38,27 @@
           type="text/css"/>
 
 </head>
-<body layout="row">
+<body>
 <!--[if lte IE 8]>
 <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade
     your browser</a> to improve your experience.</p>
 <![endif]-->
 
 
-<div ui-view>
+<div layout="column">
+    <section ng-include="'/common.header/header.html'"></section>
+    <section ui-view></section>
 </div>
 
+<div id="fb-root"></div>
+<script>(function (d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s);
+    js.id = id;
+    js.src = "//connect.facebook.net/ko_KR/sdk.js#xfbml=1&version=v2.5&appId=1662258297325035";
+    fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
 
 <script src="/bower_components/jquery/dist/jquery.js"></script>
 <script src="/bower_components/angular/angular.js"></script>
@@ -74,8 +87,13 @@
 <script src="/app.js"></script>
 <script src="/app.route.js"></script>
 <script src="/app.util.js"></script>
+<script src="/card/page/card.controller.js"></script>
+<script src="/card/page/card.list.controller.js"></script>
+<script src="/card/page/card.make.controller.js"></script>
+<script src="/card/page/deck.controller.js"></script>
 <script src="/common.alert.service/alert.service.js"></script>
-<script src="/deck/page/deck.controller.js"></script>
+<script src="/common.fb.service/fb.service.js"></script>
+<script src="/common.header/header.controller.js"></script>
 <script src="/game/card/card.controller.js"></script>
 <script src="/game/card/card.directive.js"></script>
 <script src="/game/card/card.model.js"></script>
@@ -98,12 +116,15 @@
 <script src="/game/player/player.directive.js"></script>
 <script src="/game/player/player.model.js"></script>
 <script src="/game/select.service/select.js"></script>
+<script src="/main/main.controller.js"></script>
 <script src="/manage.room/room.controller.js"></script>
 <script src="/manage.room/room.directive.js"></script>
 <script src="/manage.room/rooms.model.js"></script>
 <script src="/manage.rooms/rooms.controller.js"></script>
 <script src="/manage.rooms/rooms.directive.js"></script>
 <script src="/manage.rooms/rooms.model.js"></script>
+<script src="/user/user.directive/user.controller.js"></script>
+<script src="/user/user.directive/user.directive.js"></script>
 <script src="/web.service/http.service.js"></script>
 <script src="/web.service/jssocket.service.js"></script>
 <!-- /include -->

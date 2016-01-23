@@ -1,0 +1,22 @@
+<div layout="row" ng-controller="cardController as card">
+    <md-button ui-sref="card.list">카드목록</md-button>
+    <md-button ui-sref="card.make">카드만들기</md-button>
+    <md-menu>
+        <md-button aria-label="when effect trigger" ng-click="$mdOpenMenu($event)">
+            {{card.selected||"덱"}}
+        </md-button>
+        <md-menu-content>
+            <md-menu-item  ui-sref="card.deck({id:deck})" ng-click="card.selected = deck;" ng-repeat="deck in card.decks">
+                <md-button>
+                    {{deck}}
+                </md-button>
+            </md-menu-item>
+            <md-menu-item>
+                <md-button>
+                    덱 추가하기 +
+                </md-button>
+            </md-menu-item>
+        </md-menu-content>
+    </md-menu>
+</div>
+<div ui-view></div>

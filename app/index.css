@@ -1,5 +1,5 @@
-[ui-view] {
-  width: 100%;
+body {
+  font-size: 80%;
 }
 .area {
   max-width: 800px;
@@ -7,4 +7,13 @@
   height: 300px;
   display: block;
   position: relative;
+}
+section {
+  width: 100%;
+  max-width: 800px;
+  margin: 10px auto;
+  padding: 10px;
+}
+section:first-child {
+  padding: 0;
 }

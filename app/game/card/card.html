@@ -1,6 +1,6 @@
 <span class="cost">{{card.cost}}</span>
-<span ng-if="card.isFighter" class="attack">{{card.fighter.attack}}</span>
-<span ng-if="card.isFighter" class="vital">{{card.fighter.vital}}</span>
+<span ng-if="card.fighterCard" class="attack">{{card.fighter.attack}}</span>
+<span ng-if="card.fighterCard" class="vital">{{card.fighter.vital}}</span>
 
 <div class="body">
 
@@ -8,15 +8,20 @@
         <img ng-src="{{card.img||'/resources/card/white.png'}}">
     </div>
     <div class="title">
-        {{card.title}}
+        {{card.name}}
     </div>
     <div class="desc">
         {{card.desc}}
+        <div ng-if="card.fighterCard">
+        <strong ng-repeat="effect in card.fighter.effects">
+            효과               <md-tooltip>{{getString(effect)}}</md-tooltip>
+        </strong>
+        </div>
+        <div ng-if="!card.fighterCard">
+            <strong>{{getString(card.effect)}}</strong>
+        </div>
+    </div>
 
-    </div>
-    <div ng-if="card.isFighter">
-        <stong ng-repeat="effect in card.fighter.effects">{{getString(effect)}}</stong>
-    </div>
 
 </div>
-<div ng-click="submit()">제출</div>
+<!--<div ng-click="submit()">제출</div>-->

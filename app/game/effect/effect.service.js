@@ -1,16 +1,17 @@
 /* @ngInject */
 ws.service('effect', function (http) {
     this.timings = {};
-    this.timings.start_turn = "턴 시작";
-    this.timings.start_end = "턴 종료";
+    this.timings.START_TURN = "턴 시작";
+    this.timings.END_TURN = "턴 종료";
     this.timings.heated = "맞을 때";
-    this.timings.attack = "때릴 때";
-    this.timings.draw_card = "카드뽑을 때";
-    this.timings.die = "죽을 때";
-    this.timings.team_die = "아군 하수인이 죽을 때";
-    this.timings.team_birth = "아군 하수인이 뽑을 때";
-    this.timings.enemy_die = "적 하수인이 죽을 때";
-    this.timings.enemy_birth = "적 하수인이 뽑을 때";
+    this.timings.ATTACK = "때릴 때";
+    this.timings.DRAW_CARD = "카드뽑을 때";
+    this.timings.DIE = "죽을 때";
+    this.timings.BIRTH = "전장에 나올 때";
+    this.timings.TEAM_DIE = "아군 하수인이 죽을 때";
+    this.timings.TEAM_BIRTH = "아군 하수인이 뽑을 때";
+    this.timings.ENEMY_DIE = "적 하수인이 죽을 때";
+    this.timings.ENEMY_BIRTH = "적 하수인이 뽑을 때";
 
     this.rangeNames = {
         "ALL_FIELD_FIGHTERS": "모든 필드 하수인",
@@ -26,9 +27,15 @@ ws.service('effect', function (http) {
 
     var self = this;
 
-    //http.get('/api/card/effect').then(function (effects) {
-    //    self.effects = effects;
-    //});
+    http.get('/api/card/effect').then(function (effects) {
+        self.effects = effects;
+        self.fighterEffects = {};
+        Object.keys(effects).forEach(function (key) {
+            if (effects[key].targetNeed)
+                return;
+            self.fighterEffects[key] = effects[key];
+        });
+    });
 
     this.effects = {
         "rand_target_assinate": {
@@ -141,22 +148,33 @@ ws.service('effect', function (http) {
     this.getString = function (effect) {
         if (effect === undefined)
             return;
-        var timing = self.timings[effect.timing];
-        if (timing === undefined)
-            return "이 하수인은 "
-        var event = self.effects[effect.effect];
-        if (event === undefined)
-            return "이 하수인은 " + timing + " 때 ";
-        var params = [];
-        if (params === undefined)
-            return "이 하수인은 " + timing + " 때 " + event.name + "합니다.";
-        event.params.forEach(function (ev, i) {
-            if (effect.params[i] !== undefined)
-                params.push(ev + ":" + effect.params[i]);
-        });
-        if (params.length === 0)
-            return "이 하수인은 " + timing + " 때 " + event.name + "합니다.";
-        return "이 하수인은 " + timing + " 때 " + event.name + "(" + params.join(",") + ")합니다.";
+
+        return getTiming(self.timings[effect.timing]) + getRange(self.rangeNames[effect.range]) + getEvent(self.effects[effect.effect]);
+        function getTiming(timing) {
+            if (!timing)
+                return "";
+            return timing + " 때 ";
+        }
+
+        function getEvent(event) {
+            if (!event)
+                return "";
+            var params = [];
+            if (effect.params)
+                event.params.forEach(function (ev, i) {
+                    if (effect.params[i] !== undefined)
+                        params.push(ev + ":" + effect.params[i]);
+                });
+            if (params.length === 0)
+                return event.name;
+            return event.name + "(" + params.join(",") + ")";
+        }
+
+        function getRange(range) {
+            if (!range)
+                return "";
+            return range + "중에서  ";
+        }
     };
 
 });

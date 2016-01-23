@@ -1,6 +1,5 @@
-ws.service('Alert', alert);
 /* @ngInject */
-function alert(toastr) {
+ws.service('Alert', function (toastr) {
 
     this.log = [];
 
@@ -44,4 +43,4 @@ function alert(toastr) {
         this.type = type;
         this.msg = msg;
     }
-}
+});

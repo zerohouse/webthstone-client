@@ -1,29 +1,17 @@
-<div ng-controller="deckController as ctrl">
-    <md-subheader>덱만들기</md-subheader>
-    <md-button ng-click="ctrl.getList()">리스트</md-button>
-
-    <md-input-container>
-        <label>검색어</label>
-        <input ng-model="keyword">
-    </md-input-container>
-    <md-list>
-        <md-list-item ng-repeat="card in ctrl.cards">{{card}}</md-list-item>
-    </md-list>
-
-
-    <md-switch ng-model="ctrl.card.isFighter" aria-label="하수인 유무">하수인</md-switch>
+<div ng-controller="cardMakeController as ctrl">
+    <md-switch ng-model="ctrl.card.fighterCard" aria-label="하수인 유무">하수인</md-switch>
     <div layout="row">
         <md-input-container>
             <label>카드명</label>
-            <input ng-model="ctrl.card.title">
+            <input ng-model="ctrl.card.name">
         </md-input-container>
         <md-input-container>
             <label>코스트</label>
             <input type="number" ng-model="ctrl.card.cost">
         </md-input-container>
-        <md-input-container>
+        <md-input-container md-is-error="ctrl.img && ctrl.imgInvalid">
             <label>이미지</label>
-            <input ng-model="ctrl.card.img">
+            <input ng-model="ctrl.img" ng-model-options="{debounce:300}" >
         </md-input-container>
         <!--<md-button ng-click="ctrl.saveCard(ctrl.card)">카드 저장</md-button>-->
     </div>
@@ -34,7 +22,7 @@
         </md-input-container>
     </div>
 
-    <div layout="row" ng-show="ctrl.card.isFighter">
+    <div layout="row" ng-show="ctrl.card.fighterCard">
         <md-input-container>
             <label>공격력</label>
             <input type="number" ng-model="ctrl.card.fighter.attack">
@@ -45,11 +33,44 @@
         </md-input-container>
         <!--<md-button ng-click="ctrl.saveCard(ctrl.card)">카드 저장</md-button>-->
     </div>
-    <md-list ng-show="ctrl.card.isFighter">
+
+    <div ng-show="!ctrl.card.fighterCard" layout="row">
+        <md-menu>
+            <md-button aria-label="when effect trigger" ng-click="$mdOpenMenu($event)">
+                {{ctrl.effect.effects[ctrl.card.effect.effect].name||"주문"}}
+            </md-button>
+            <md-menu-content>
+                <md-menu-item ng-click="ctrl.card.effect.effect = key" ng-repeat="(key, ef) in ctrl.effect.effects">
+                    <md-button>
+                        {{ef.name}}
+                    </md-button>
+                </md-menu-item>
+            </md-menu-content>
+        </md-menu>
+        <md-menu ng-if="ctrl.effect.effects[ctrl.card.effect.effect].rangeSelect">
+            <md-button aria-label="when effect trigger"  ng-click="$mdOpenMenu($event)">
+                {{ctrl.effect.rangeNames[ctrl.card.effect.range]||"범위"}}
+            </md-button>
+            <md-menu-content>
+                <md-menu-item ng-click="ctrl.card.effect.range = range"
+                              ng-repeat="range in ctrl.effect.effects[ctrl.card.effect.effect].range">
+                    <md-button>
+                        {{ctrl.effect.rangeNames[range]}}
+                    </md-button>
+                </md-menu-item>
+            </md-menu-content>
+        </md-menu>
+        <md-input-container ng-repeat="param in ctrl.effect.effects[ctrl.card.effect.effect].params">
+            <label>{{param}}</label>
+            <input type="number" ng-model="ctrl.card.effect.params[$index]">
+        </md-input-container>
+    </div>
+
+    <md-list ng-show="ctrl.card.fighterCard">
         <div ng-click="ctrl.addEffect()">효과 추가</div>
         <md-list-item ng-repeat="effect in ctrl.card.fighter.effects">
             <md-menu>
-                <md-button aria-label="when effect trigger" class="md-icon-button" ng-click="$mdOpenMenu($event)">
+                <md-button aria-label="when effect trigger" ng-click="$mdOpenMenu($event)">
                     {{ctrl.effect.timings[effect.timing]||"발동 시점"}}
                 </md-button>
                 <md-menu-content>
@@ -61,11 +82,11 @@
                 </md-menu-content>
             </md-menu>
             <md-menu>
-                <md-button aria-label="when effect trigger" class="md-icon-button" ng-click="$mdOpenMenu($event)">
+                <md-button aria-label="when effect trigger" ng-click="$mdOpenMenu($event)">
                     {{ctrl.effect.effects[effect.effect].name||"발동 효과"}}
                 </md-button>
                 <md-menu-content>
-                    <md-menu-item ng-click="effect.effect = key" ng-repeat="(key, ef) in ctrl.effect.effects">
+                    <md-menu-item ng-click="effect.effect = key" ng-repeat="(key, ef) in ctrl.effect.fighterEffects">
                         <md-button>
                             {{ef.name}}
                         </md-button>
@@ -73,11 +94,12 @@
                 </md-menu-content>
             </md-menu>
             <md-menu ng-if="ctrl.effect.effects[effect.effect].rangeSelect">
-                <md-button aria-label="when effect trigger" class="md-icon-button" ng-click="$mdOpenMenu($event)">
+                <md-button aria-label="when effect trigger" ng-click="$mdOpenMenu($event)">
                     {{ctrl.effect.rangeNames[effect.range]||"범위"}}
                 </md-button>
                 <md-menu-content>
-                    <md-menu-item ng-click="effect.range = key" ng-repeat="range in ctrl.effect.effects[effect.effect].range">
+                    <md-menu-item ng-click="effect.range = range"
+                                  ng-repeat="range in ctrl.effect.effects[effect.effect].range">
                         <md-button>
                             {{ctrl.effect.rangeNames[range]}}
                         </md-button>
@@ -91,5 +113,5 @@
         </md-list-item>
     </md-list>
     <game-card card="ctrl.card"></game-card>
+    <md-button class="md-raised" ng-click="ctrl.saveCard(ctrl.card)">저장하기</md-button>
 </div>
-

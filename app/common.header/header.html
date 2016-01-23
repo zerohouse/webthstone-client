@@ -1,0 +1,15 @@
+<div ng-controller="headerController as header" layout="row">
+    <div>
+        <md-button class="md-raised" ui-sref="game">게임하기</md-button>
+        <md-button class="md-raised" ui-sref="card">카드!</md-button>
+
+
+    </div>
+    <div flex></div>
+    <div>
+        <md-button class="md-raised" ng-show="!header.fb.user" ng-click="header.fb.login()">페이스북으로 로그인하기</md-button>
+        <div ng-show="header.fb.user" layout="row">
+            <user user="header.fb.user"></user>
+        </div>
+    </div>
+</div>
