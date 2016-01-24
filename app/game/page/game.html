@@ -33,10 +33,12 @@
             게임 하기
         </md-button>
     </div>
-    <div layout="row" layout-align="center center" ng-show="game.playing">
-        <div> 남은시간 : {{game.remainSeconds}}</div>
+    <div ng-show="game.playing">
+        <div layout="row" layout-align="center center">
+            <div> 남은시간 : {{game.remainSeconds}}</div>
+        </div>
+        <enemy></enemy>
+        <player></player>
+        <logger></logger>
     </div>
 </div>
-<enemy></enemy>
-<player></player>
-<!--<logger></logger>-->

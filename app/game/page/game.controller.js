@@ -6,6 +6,7 @@ ws.controller('gameController', function (JSocket, Alert, $interval, fb) {
 
     this.fb = fb;
 
+
     this.heros = {
         healer: "치료", magician: "데미지", warrior: "방어도", hunter: "적 영웅 공격"
     };
@@ -13,6 +14,10 @@ ws.controller('gameController', function (JSocket, Alert, $interval, fb) {
     this.playGame = function (deckId, hero) {
         JSocket.send("game.play", {deckId: deckId, hero: hero});
     };
+
+    JSocket.on('game.player_update', function (player) {
+        self.playing = true;
+    });
 
     JSocket.on("message", function (message) {
         Alert.info(message);
@@ -52,6 +57,7 @@ ws.controller('gameController', function (JSocket, Alert, $interval, fb) {
 
     JSocket.on("game.start", function () {
         Alert.info("게임을 시작합니다.");
+        self.playing = true;
     });
 
     function resetTimer() {

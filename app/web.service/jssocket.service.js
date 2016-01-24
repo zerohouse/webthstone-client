@@ -1,4 +1,5 @@
-ws.service('JSocket', function () {
+/* @ngInject */
+ws.service('JSocket', function ($timeout) {
     var events = {};
     var sock = new SockJS('/socket');
 
@@ -10,28 +11,39 @@ ws.service('JSocket', function () {
 
     sock.onmessage = function (response) {
         eventQue.unshift(response);
-        queing();
+        queing(eventQue, function (r) {
+            var jeo = JSON.parse(r.data);
+            if (!events[jeo.type] || !events[jeo.type].forEach)
+                return;
+            events[jeo.type].forEach(function (fn) {
+                if (typeof fn !== "function")
+                    return;
+                fn(jeo.result);
+            });
+
+        });
     };
 
-    function queing() {
-        var response = eventQue.pop();
-        var jeo = JSON.parse(response.data);
-        if (typeof events[jeo.type] !== "function")
-            return;
-        events[jeo.type](jeo.result);
-        if (eventQue.length === 0)
-            return;
-        queing();
-    }
 
     this.on = function (event, fn) {
-        events[event] = fn;
+        if (!events[event])
+            events[event] = [];
+        events[event].push(fn);
     };
 
 
+    var sendQue = [];
     this.send = function (event, params) {
         var jeo = new Jeo(event, params);
-        sock.send(JSON.stringify(jeo));
+        queing(sendQue, sendMessage);
+
+        function sendMessage() {
+            if (sock.readyState !== 1) {
+                $timeout(sendMessage, 300);
+                return;
+            }
+            sock.send(JSON.stringify(jeo));
+        }
     };
 
     function Jeo(type, params) {
@@ -39,4 +51,13 @@ ws.service('JSocket', function () {
         this.params = params;
     }
 
-});
+    function queing(eventQue, fn) {
+        var pop = eventQue.pop();
+        fn(pop);
+        if (eventQue.length === 0)
+            return;
+        queing(eventQue, fn);
+    }
+
+})
+;

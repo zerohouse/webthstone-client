@@ -9,7 +9,11 @@ angular.module('ws').config(function ($stateProvider, $urlRouterProvider) {
         .state("game", {
             name: "game",
             url: "/game",
-            templateUrl: "/game/page/game.html"
+            templateUrl: "/game/page/game.html",
+            /* @ngInject */
+            onEnter: function (JSocket) {
+                JSocket.send("game.enter");
+            }
         })
         .state("card", {
             name: "card",
