@@ -13,9 +13,10 @@
     <div class="desc">
         {{card.desc}}
         <div ng-if="card.fighterCard">
-        <strong ng-repeat="effect in card.fighter.effects">
-            효과               <md-tooltip>{{getString(effect)}}</md-tooltip>
-        </strong>
+            <strong ng-repeat="effect in card.fighter.effects">
+                효과
+                <md-tooltip>{{getString(effect)}}</md-tooltip>
+            </strong>
         </div>
         <div ng-if="!card.fighterCard">
             <strong>{{getString(card.effect)}}</strong>
@@ -24,4 +25,4 @@
 
 
 </div>
-<!--<div ng-click="submit()">제출</div>-->
+<div ng-click="submit()">제출</div>

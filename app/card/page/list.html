@@ -4,7 +4,7 @@
         <input ng-model="list.keyword" ng-model-options="{debounce:300}">
     </md-input-container>
     <md-list>
-        <md-list-item ng-repeat="card in list.cards">
+        <md-list-item ng-repeat="card in list.cards  |filter:list.keyword">
             <div>마나 {{card.cost}}</div>
             <div flex>{{card.name}}</div>
             <div ng-if="card.fighterCard">하수인 {{card.fighter.attack}} / {{card.fighter.vital}}</div>
@@ -16,7 +16,7 @@
                     </md-button>
                     <md-menu-content>
                         <md-menu-item ng-click="list.addToDeck(deck, card)"
-                                      ng-repeat="deck in list.user.deckList |filter:list.keyword">
+                                      ng-repeat="deck in list.user.deckList">
                             <md-button>
                                 {{deck.name}}
                             </md-button>

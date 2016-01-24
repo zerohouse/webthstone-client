@@ -1,11 +1,17 @@
-ws.controller('gameController', function (JSocket, Alert, $interval) {
+ws.controller('gameController', function (JSocket, Alert, $interval, fb) {
 
     var TURN_TIME_OUT = 30;
 
     var self = this;
 
-    this.playGame = function () {
-        JSocket.send("game.play");
+    this.fb = fb;
+
+    this.heros = {
+        healer: "치료", magician: "데미지", warrior: "방어도", hunter: "적 영웅 공격"
+    };
+
+    this.playGame = function (deckId, hero) {
+        JSocket.send("game.play", {deckId: deckId, hero: hero});
     };
 
     JSocket.on("message", function (message) {

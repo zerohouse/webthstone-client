@@ -25,18 +25,6 @@ ws.service('effect', function (http) {
         "ENEMY_HERO": "적 영웅"
     };
 
-    var self = this;
-
-    http.get('/api/card/effect').then(function (effects) {
-        self.effects = effects;
-        self.fighterEffects = {};
-        Object.keys(effects).forEach(function (key) {
-            if (effects[key].targetNeed)
-                return;
-            self.fighterEffects[key] = effects[key];
-        });
-    });
-
     this.effects = {
         "rand_target_assinate": {
             "id": "rand_target_assinate",
@@ -138,6 +126,19 @@ ws.service('effect', function (http) {
             ]
         }
     };
+
+
+    var self = this;
+
+    http.get('/api/card/effect').then(function (effects) {
+        self.effects = effects;
+        self.fighterEffects = {};
+        Object.keys(effects).forEach(function (key) {
+            if (effects[key].targetNeed)
+                return;
+            self.fighterEffects[key] = effects[key];
+        });
+    });
 
     this.Effect = Effect;
 

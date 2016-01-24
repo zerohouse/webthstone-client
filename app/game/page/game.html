@@ -1,12 +1,42 @@
 <div ng-controller="gameController as game">
-    <md-button ng-click="game.playGame()">
-        게임 참여
-    </md-button>
-    <div layout="row" layout-align="center center">
+    <div ng-show="!game.playing">
+        <md-menu>
+            <md-button aria-label="when effect trigger" ng-click="$mdOpenMenu($event)">
+                {{game.selectedDeck.name||"덱 선택"}}
+            </md-button>
+            <md-menu-content>
+                <md-menu-item ng-click="game.selectedDeck = deck;"
+                              ng-repeat="deck in game.fb.user.deckList">
+                    <md-button>
+                        {{deck.name}}
+                    </md-button>
+                </md-menu-item>
+                <md-menu-item ng-hide="game.fb.user.deckList && game.fb.user.deckList.length>0">
+                    <md-button>덱이 없어요.</md-button>
+                </md-menu-item>
+            </md-menu-content>
+        </md-menu>
+        <md-menu>
+            <md-button aria-label="when effect trigger" ng-click="$mdOpenMenu($event)">
+                {{game.heros[game.selectedHero]||"영웅 능력 선택"}}
+            </md-button>
+            <md-menu-content>
+                <md-menu-item ng-click="game.selectedHero = key;"
+                              ng-repeat="(key, hero) in game.heros">
+                    <md-button>
+                        {{hero}}
+                    </md-button>
+                </md-menu-item>
+            </md-menu-content>
+        </md-menu>
+        <md-button ng-click="game.playGame(game.selectedDeck.id, game.selectedHero)">
+            게임 하기
+        </md-button>
+    </div>
+    <div layout="row" layout-align="center center" ng-show="game.playing">
         <div> 남은시간 : {{game.remainSeconds}}</div>
     </div>
 </div>
 <enemy></enemy>
 <player></player>
-<logger></logger>
-헤헿
+<!--<logger></logger>-->
