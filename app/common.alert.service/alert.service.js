@@ -24,19 +24,9 @@ ws.service('Alert', function (toastr) {
         this.log.unshift(new Log('warning', msg));
     };
 
-    this.error = function (msg, err) {
+    this.error = function (msg) {
         toastr.error(msg, '오류');
         this.log.unshift(new Log('error', msg));
-        if (bowser.chrome) {
-            if (err) {
-                console.table({
-                    'message': msg,
-                    'error': err
-                });
-            } else {
-                console.log({'message': msg, 'error': err});
-            }
-        }
     };
 
     function Log(type, msg) {
