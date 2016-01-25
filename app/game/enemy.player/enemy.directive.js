@@ -1,3 +1,4 @@
+/* @ngInject */
 ws.directive('enemy', function () {
     return {
         restrict: 'E',

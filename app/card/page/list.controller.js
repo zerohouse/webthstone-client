@@ -1,3 +1,4 @@
+/* @ngInject */
 ws.controller('cardListController', function (http, effect, $scope, fb) {
     this.effect = effect;
     var self = this;

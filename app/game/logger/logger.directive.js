@@ -1,3 +1,4 @@
+
 ws.directive('logger', function () {
     return {
         restrict: 'E',

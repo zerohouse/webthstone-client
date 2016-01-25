@@ -1,3 +1,4 @@
+/* @ngInject */
 ws.service('select', function (Alert) {
 
     this.all = function (e, title, callback) {

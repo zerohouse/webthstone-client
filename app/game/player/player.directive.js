@@ -1,3 +1,4 @@
+/* @ngInject */
 ws.directive('player', function () {
     return {
         restrict: 'E',

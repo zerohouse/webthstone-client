@@ -1,3 +1,4 @@
+/* @ngInject */
 ws.controller('cardMakeController', function (http, effect, $q, $scope) {
     var self = this;
     this.card = {fighter: {effects: []}, effect: {params: []}};

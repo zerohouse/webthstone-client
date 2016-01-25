@@ -1,3 +1,4 @@
+/* @ngInject */
 ws.controller('deckController', function (http, $stateParams, $scope, fb, effect) {
     var self = this;
     self.effect = effect;

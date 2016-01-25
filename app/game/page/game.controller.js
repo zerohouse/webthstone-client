@@ -1,3 +1,4 @@
+/* @ngInject */
 ws.controller('gameController', function (JSocket, Alert, $interval, fb) {
 
     var TURN_TIME_OUT = 30;

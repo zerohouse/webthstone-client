@@ -1,3 +1,4 @@
+/* @ngInject */
 ws.directive('hand', function () {
     return {
         restrict: 'E',

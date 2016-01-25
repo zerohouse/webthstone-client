@@ -1,3 +1,4 @@
+/* @ngInject */
 ws.directive('fighter', function () {
     return {
         restrict: 'E',
