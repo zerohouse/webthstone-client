@@ -11,7 +11,7 @@
         </md-input-container>
         <md-input-container md-is-error="ctrl.img && ctrl.imgInvalid">
             <label>이미지</label>
-            <input ng-model="ctrl.img" ng-model-options="{debounce:300}" >
+            <input ng-model="ctrl.img" ng-model-options="{debounce:300}" maxlength="255">
         </md-input-container>
         <!--<md-button ng-click="ctrl.saveCard(ctrl.card)">카드 저장</md-button>-->
     </div>
