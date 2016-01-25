@@ -38,7 +38,7 @@ game-card .body .title {
   height: 20px;
   margin-top: 7px;
 }
-game-card .body .desc {
+game-card .body .detail {
   padding: 8px 17px;
   text-align: justify;
   height: 40px;
