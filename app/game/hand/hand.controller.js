@@ -1,5 +1,5 @@
 /* @ngInject */
-ws.controller('handDirectiveController', function (GameCard, $element, $window, JSocket, $scope) {
+ws.controller('handDirectiveController', function ($element, $window, JSocket, $scope) {
     var width = $element.width();
 
     angular.element($window).bind('resize', function () {
