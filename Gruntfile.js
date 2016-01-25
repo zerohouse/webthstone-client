@@ -336,9 +336,9 @@ module.exports = function (grunt) {
             dist: {
                 files: [{
                     expand: true,
-                    cwd: '<%= yeoman.app %>/resource',
+                    cwd: '<%= yeoman.app %>/resources',
                     src: '{,*/}*.{png,jpg,jpeg,gif}',
-                    dest: '<%= yeoman.dist %>/resource'
+                    dest: '<%= yeoman.dist %>/resources'
                 }]
             }
         },
@@ -347,9 +347,9 @@ module.exports = function (grunt) {
             dist: {
                 files: [{
                     expand: true,
-                    cwd: '<%= yeoman.app %>/resource',
+                    cwd: '<%= yeoman.app %>/resources',
                     src: '{,*/}*.svg',
-                    dest: '<%= yeoman.dist %>/resource'
+                    dest: '<%= yeoman.dist %>/resources'
                 }]
             }
         },
@@ -431,7 +431,7 @@ module.exports = function (grunt) {
                     cwd: '<%= yeoman.app %>',
                     dest: '<%= yeoman.dist %>',
                     src: [
-                        '**/*.ico',
+                        'resources/**/*.*',
                         'index.html'
                     ]
                 }]
